@@ -1,0 +1,34 @@
+
+//Elements from my HTML Page
+var enter = document.getElementById("myText");
+var instructions = document.getElementById("instructions");
+
+//Commands the User can call
+var help = 
+"**********************************</br>\
+| Here are the commands you can use:</br></br>\
+| h - help</br>\
+| m - map</br>\
+| g - go</br>\
+**********************************";
+
+// Looking for when the player presses ENTER
+enter.addEventListener("keyup", function(event){
+  event.preventDefault();
+  if(event.keyCode === 13){
+      start();
+  }//end if
+
+});
+
+
+function start(){
+  //Grab the contents of the text box
+  var input = enter.value;
+
+
+  if(input.toLowerCase() == "h"){
+    instructions.innerHTML += "</br>" + help;
+  }//end if
+
+}//end function start
