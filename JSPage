@@ -2,7 +2,7 @@
 //Elements from my HTML Page
 var enter = document.getElementById("myText");
 var instructions = document.getElementById("instructions");
-
+var goBool = false;
 //Commands the User can call
 var help = 
 "**********************************</br>\
@@ -11,24 +11,37 @@ var help =
 | m - map</br>\
 | g - go</br>\
 **********************************";
-
 // Looking for when the player presses ENTER
 enter.addEventListener("keyup", function(event){
   event.preventDefault();
   if(event.keyCode === 13){
-      start();
+      control();
   }//end if
 
 });
-
-
 function start(){
   //Grab the contents of the text box
   var input = enter.value;
-
-
-  if(input.toLowerCase() == "h"){
-    instructions.innerHTML += "</br>" + help;
-  }//end if
+  switch(input.toLowerCase()){
+    case("h"):
+      instructions.innerHTML += "</br>" + help;
+      break;
+    case("g"):
+      instructions.innerHTML += "</br> What direction? </br> (e-East w-West n-North s-Sorth)";
+      goBool = true;
+      break;
+  }
 
 }//end function start
+
+function control(){
+  if(goBool){
+    go();
+  }else{
+    start();
+  }
+}//end function control
+
+function go(){
+  instructions.innerHTML = "Please work";
+}//end function go
