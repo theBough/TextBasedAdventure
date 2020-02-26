@@ -4,29 +4,31 @@ var enter = document.getElementById("myText");
 var instructions = document.getElementById("instructions");
 var goBool = false;
 //Commands the User can call
-var help = 
-"**********************************</br>\
+var help =
+  "**********************************</br>\
 | Here are the commands you can use:</br></br>\
 | h - help</br>\
 | m - map</br>\
 | g - go</br>\
 **********************************";
+var room  = "commons";
+
 // Looking for when the player presses ENTER
-enter.addEventListener("keyup", function(event){
+enter.addEventListener("keyup", function (event) {
   event.preventDefault();
-  if(event.keyCode === 13){
-      control();
+  if (event.keyCode === 13) {
+    control();
   }//end if
 
 });
-function start(){
+function start() {
   //Grab the contents of the text box
   var input = enter.value;
-  switch(input.toLowerCase()){
-    case("h"):
+  switch (input.toLowerCase()) {
+    case ("h"):
       instructions.innerHTML += "</br>" + help;
       break;
-    case("g"):
+    case ("g"):
       instructions.innerHTML += "</br> What direction? </br> (e-East w-West n-North s-Sorth)";
       goBool = true;
       break;
@@ -34,14 +36,49 @@ function start(){
 
 }//end function start
 
-function control(){
-  if(goBool){
+function control() {
+  if (goBool) {
     go();
-  }else{
+  } else {
     start();
   }
 }//end function control
 
-function go(){
-  instructions.innerHTML = "Please work";
+function go() {
+  var input = enter.value;
+
+  if (input.length > 1) {
+    instructions.innerHTML += "</br> One letter at a time!";
+    return 0;
+  }//end if
+  switch (input) {
+    case ("e"):
+      east();
+      break;
+    case ("w"):
+      west();
+      break;
+    case ("n"):
+      north();
+      break;
+    case ("s"):
+      south();
+      break;
+  }//end switch
 }//end function go
+function east() {
+  instructions.innerHTML += "</br> You headed East!!!";
+}//end function east
+function west() {
+  switch(room){
+    case("commons"):
+      instructions.innerHTML += "</br> You are in the GYM";
+    break;
+  }
+}//end function east
+function north() {
+
+}//end function east
+function south() {
+
+}//end function east
